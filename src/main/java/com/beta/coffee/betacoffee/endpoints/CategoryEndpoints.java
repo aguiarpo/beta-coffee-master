@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +32,15 @@ public class CategoryEndpoints {
         return new ResponseEntity<>(categoryDao.findAll(pageable), HttpStatus.OK);
     }
 
+    @GetMapping(path = "category/name/{name}")
+    public ResponseEntity<?> findByNameLike(@PathVariable String name, Pageable pageable){
+        return new ResponseEntity<>(categoryDao.findByNameLike(name, pageable), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "category/{id}")
+    public ResponseEntity<?> findById(@PathVariable Short id){
+        return new ResponseEntity<>(categoryDao.findById(id), HttpStatus.OK);
+    }
 
     @PostMapping(path = "category")
     public ResponseEntity<?> create(@RequestBody Category category){
