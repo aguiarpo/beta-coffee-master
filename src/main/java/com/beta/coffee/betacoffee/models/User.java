@@ -15,8 +15,8 @@ import lombok.Setter;
 @Setter
 public class User{
 
-    public User(String nameUser, String email, String password, LevelsOfAccess type){
-        this.nameUser = nameUser;
+    public User(String name, String email, String password, LevelsOfAccess type){
+        this.name = name;
         this.email = email;
         this.password = password;
         this.type = type;
@@ -26,7 +26,7 @@ public class User{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     Long id;
 
-    String nameUser;
+    String name;
 
     String email;
 
