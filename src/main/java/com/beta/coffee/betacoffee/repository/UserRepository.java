@@ -9,5 +9,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
     List<User> findByType(LevelsOfAccess levelAccess);
-    User findByNameUser(String name);
+    User findByName(String name);
 } 
