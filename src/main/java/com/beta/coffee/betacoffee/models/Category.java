@@ -2,7 +2,7 @@ package com.beta.coffee.betacoffee.models;
 
 import java.util.List;
 import javax.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +20,7 @@ public class Category{
     @Column(unique = true)
     String name;
     
+    @JsonIgnore
     @OneToMany(mappedBy="category")
     List<Product> products;
 
