@@ -5,6 +5,7 @@ import java.util.List;
 import com.beta.coffee.betacoffee.models.User;
 import com.beta.coffee.betacoffee.models.enums.LevelsOfAccess;
 import com.beta.coffee.betacoffee.repository.UserRepository;
+import com.beta.coffee.betacoffee.twilio.TwilioMessageWhatsapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,5 +35,12 @@ public class AdminEndpoints{
              return new ResponseEntity<>(savedAdmin, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(path = "message")
+    public ResponseEntity<?> message(){
+        Integer error = TwilioMessageWhatsapp.
+        messageSend("whatsapp:+554791164298", "Oi, gostaria de dar seu Cu?");
+        return new ResponseEntity<>(error, HttpStatus.OK);
     }
 } 
