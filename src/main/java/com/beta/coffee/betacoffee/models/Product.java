@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 import com.beta.coffee.betacoffee.models.enums.CupSize;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +33,7 @@ public class Product{
     Category category;
 
     @ManyToMany(mappedBy = "products")
+    @JsonIgnore
     List<Request> requests;
 
 }
