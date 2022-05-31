@@ -13,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -41,10 +43,12 @@ public class AdminEndpoints{
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping(path = "message")
-    public ResponseEntity<?> message(){
+    @PostMapping(path = "message/wpp")
+    public ResponseEntity<?> message(@RequestParam String number,
+    @RequestParam String bodyText){
         Integer error = TwilioMessageWhatsapp.
-        messageSend("whatsapp:+554791164298", "Oi, gostaria de dar seu Cu?");
+        messageSend("whatsapp:+" + number, "O seu pedido foi realizado... " + bodyText);
+        System.out.println("whatsapp:+" + number);
         return new ResponseEntity<>(error, HttpStatus.OK);
     }
 
