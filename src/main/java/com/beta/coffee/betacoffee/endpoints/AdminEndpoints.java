@@ -31,17 +31,6 @@ public class AdminEndpoints{
         this.mailer = mailer;
     }
 
-    @GetMapping(path = "create/admin")
-    public ResponseEntity<?> createAdmin(){
-        List<User> adminUsers = userDao.findByType(LevelsOfAccess.ADMIN);
-        if(adminUsers.isEmpty()){
-            User primaryAdmin = new User("Lucas",
-             "1@gmail.com", "123", LevelsOfAccess.ADMIN);
-             User savedAdmin = userDao.save(primaryAdmin);
-             return new ResponseEntity<>(savedAdmin, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     @PostMapping(path = "message/wpp")
     public ResponseEntity<?> message(@RequestParam String number,

@@ -1,6 +1,7 @@
 package com.beta.coffee.betacoffee.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 import com.beta.coffee.betacoffee.models.enums.LevelsOfAccess;
 
@@ -15,19 +16,14 @@ import lombok.Setter;
 @Setter
 public class User{
 
-    public User(String name, String email, String password, LevelsOfAccess type){
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.type = type;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     Long id;
 
     String name;
 
+    @Email
+    @Column(unique = true)
     String email;
 
     String password;
@@ -36,4 +32,7 @@ public class User{
     @Column(unique = true)
     LevelsOfAccess type;
 
+    public User() {
+
+    }
 }
